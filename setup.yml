@@ -49,7 +49,7 @@
     - name: unzip emacs source
       unarchive:
           src: "{{ ansible_env.HOME }}/emacs-src/emacs.tar.gz"
-          dest: "{{ ansible_env.HOME }}/setup/emacs_source"
+          dest: "{{ ansible_env.HOME }}/emacs-src"
 
     - name: install dependencies
       apt:
