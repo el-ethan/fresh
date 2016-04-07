@@ -116,6 +116,5 @@
       sudo: yes
 
     - name: install enpass
-      apt: name=enpass state=present
-      update_cache: yes
+      apt: name=enpass state=present update_cache=yes
       sudo: yes
