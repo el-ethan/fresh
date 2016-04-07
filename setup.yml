@@ -29,65 +29,65 @@
           - virtualenv
           - virtualenvwrapper
 
-    # - name: install PyPi packages
-    #   pip: name={{ item }} state=present
-    #   with_items:
-    #       - importmagic
-    #       - pdbpp
+    - name: install PyPi packages
+      pip: name={{ item }} state=present
+      with_items:
+          - importmagic
+          - pdbpp
 
-    # - name: make emacs source directory
-    #   file:
-    #       path: "{{ ansible_env.HOME }}/emacs-src"
-    #       state: directory
+    - name: make emacs source directory
+      file:
+          path: "{{ ansible_env.HOME }}/emacs-src"
+          state: directory
 
-    # - name: download emacs source
-    #   get_url:
-    #       url: "{{ emacs_source_url }}"
-    #       dest: "{{ ansible_env.HOME }}/emacs-src/emacs.tar.gz"
-    #       mode: 0755
+    - name: download emacs source
+      get_url:
+          url: "{{ emacs_source_url }}"
+          dest: "{{ ansible_env.HOME }}/emacs-src/emacs.tar.gz"
+          mode: 0755
 
-    # - name: unzip emacs source
-    #   unarchive:
-    #       src: "{{ ansible_env.HOME }}/emacs-src/emacs.tar.gz"
-    #       dest: "{{ ansible_env.HOME }}/setup/emacs_source"
+    - name: unzip emacs source
+      unarchive:
+          src: "{{ ansible_env.HOME }}/emacs-src/emacs.tar.gz"
+          dest: "{{ ansible_env.HOME }}/setup/emacs_source"
 
-    # - name: install dependencies
-    #   apt:
-    #       name: "build-essential"
-    #       update_cache: yes
-    #   sudo: yes
+    - name: install dependencies
+      apt:
+          name: "build-essential"
+          update_cache: yes
+      sudo: yes
 
-    # - name: install emacs dependencies
-    #   apt:
-    #       name: emacs24
-    #       update_cache: yes
-    #       state: "build-dep"
-    #   sudo: yes
+    - name: install emacs dependencies
+      apt:
+          name: emacs24
+          update_cache: yes
+          state: "build-dep"
+      sudo: yes
 
-    # - name: configure
-    #   command: ./configure
-    #   args:
-    #       chdir: "{{ ansible_env.HOME }}/emacs-src/emacs-24.5/"
+    - name: configure
+      command: ./configure
+      args:
+          chdir: "{{ ansible_env.HOME }}/emacs-src/emacs-24.5/"
 
-    # - name: make
-    #   command: make
-    #   args:
-    #       chdir: "{{ ansible_env.HOME }}/emacs-src/emacs-24.5/"
+    - name: make
+      command: make
+      args:
+          chdir: "{{ ansible_env.HOME }}/emacs-src/emacs-24.5/"
 
-    # - name: make install
-    #   command: make install
-    #   args:
-    #       chdir: "{{ ansible_env.HOME }}/emacs-src/emacs-24.5/"
+    - name: make install
+      command: make install
+      args:
+          chdir: "{{ ansible_env.HOME }}/emacs-src/emacs-24.5/"
 
-    # - name: download .emacs.d
-    #   git:
-    #       repo: https://github.com/el-ethan/.emacs.d.git
-    #       dest: "{{ ansible_env.HOME }}/.emacs.d"
+    - name: download .emacs.d
+      git:
+          repo: https://github.com/el-ethan/.emacs.d.git
+          dest: "{{ ansible_env.HOME }}/.emacs.d"
 
-    # - name: download dot files
-    #   git:
-    #       repo: https://github.com/el-ethan/dotfiles.git
-    #       dest: "{{ ansible_env.HOME }}/dotfiles"
+    - name: download dot files
+      git:
+          repo: https://github.com/el-ethan/dotfiles.git
+          dest: "{{ ansible_env.HOME }}/dotfiles"
 
     - name: download terminator theme
       git:
