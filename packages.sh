@@ -18,3 +18,6 @@ apt-get install -y python-setuptools python-pygame python-opengl \
 
 ###### PyPI packages ######
 pip install rope flake8 importmagic autopep8 psutil cython jedi pdbpp
+
+## Virtualenv
+pip install virtualenv virtualenvwrapper
