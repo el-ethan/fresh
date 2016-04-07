@@ -5,10 +5,10 @@
   connection: local
 
   vars:
-      emacs_source_url: http://mirror.team-cymru.org/gnu/emacs/emacs-24.5.tar.gz
+      emacs_source_url: "http://mirror.team-cymru.org/gnu/emacs/emacs-24.5.tar.gz"
 
   tasks:
-      - name: install apt packages
+    - name: install apt packages
         apt: name={{ item }} state=present
         sudo: yes
         with_items:
@@ -21,11 +21,6 @@
             - xclip
             - silversearcher-ag
             - nautilus-dropbox
-
-    - name: install global python packages through apt
-        apt: name={{ item }} state=present
-        sudo: yes
-        with_items:
             - python-pip
             - python-psutil
             - python-rope
