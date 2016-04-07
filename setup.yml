@@ -61,20 +61,20 @@
       apt:
           name: emacs24
           update_cache: yes
-          state: "build-dep"
+          state: build-dep
       sudo: yes
 
-    - name: configure
+    - name: configure emacs
       command: ./configure
       args:
           chdir: "{{ ansible_env.HOME }}/emacs-src/emacs-24.5/"
 
-    - name: make
+    - name: make emacs
       command: make
       args:
           chdir: "{{ ansible_env.HOME }}/emacs-src/emacs-24.5/"
 
-    - name: make install
+    - name: make install emacs
       command: make install
       args:
           chdir: "{{ ansible_env.HOME }}/emacs-src/emacs-24.5/"
@@ -107,4 +107,14 @@
 
     - name: enable uncomplicated firewall
       command: ufw enable
+      sudo: yes
+
+    - name: add key for enpass
+      apt_key:
+          url: http://repo.sinew.in/keys/enpass-linux.key
+      sudo: yes
+
+    - name: install enpass
+      apt: name=enpass state=present
+      update_cache: yes
       sudo: yes
