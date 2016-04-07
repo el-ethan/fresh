@@ -78,6 +78,7 @@
       command: make install
       args:
           chdir: "{{ ansible_env.HOME }}/emacs-src/emacs-24.5/"
+      sudo: yes
 
     - name: download .emacs.d
       git:
