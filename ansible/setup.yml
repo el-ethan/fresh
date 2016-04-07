@@ -1,0 +1,92 @@
+---
+- name: Setup new Ubuntu desktop machine
+  hosts: local
+  user: root
+  connection: local
+
+  vars:
+      emacs_source_url: http://mirror.team-cymru.org/gnu/emacs/emacs-24.5.tar.gz
+
+  tasks:
+      - name: install apt packages
+        apt: name={{ item }} state=present
+        sudo: yes
+        with_items:
+            - git
+            - terminator
+            - tree
+            - virtualbox-qt
+            - ipython
+            - editorconfig
+            - xclip
+            - silversearcher-ag
+            - nautilus-dropbox
+
+    - name: install global python packages through apt
+        apt: name={{ item }} state=present
+        sudo: yes
+        with_items:
+            - python-pip
+            - python-psutil
+            - python-rope
+            - python-flake8
+            - python-autopep8
+            - virtualenv
+            - virtualenvwrapper
+
+    - name: install PyPi packages
+        pip: name={{ item }} state=present
+        with_items:
+            - importmagic
+            - pdbpp
+
+    - name: make sure the emacs source directory exists
+        file:
+            path: "{{ ansible_env.HOME }}/emacs-src"
+            state: directory
+            mode: 0777
+        sudo: yes
+
+    - name: download emacs source
+        get_url:
+            url: "{{ emacs_source_url }}"
+            dest: "{{ ansible_env.HOME }}/emacs-src/emacs.tar.gz"
+            mode: 0755
+
+    - name: unzip emacs source
+        unarchive:
+            src: "{{ ansible_env.HOME }}/emacs-src/emacs.tar.gz"
+            dest: "{{ ansible_env.HOME }}/setup/emacs_source"
+
+    - name: install dependencies
+        apt:
+            name: "build-essential"
+            update_cache: yes
+        sudo: yes
+
+    - name: install emacs dependencies
+        apt:
+            name: emacs24
+            update_cache: yes
+            state: "build-dep"
+        sudo: yes
+
+    - name: configure
+        command: ./configure
+        args:
+            chdir: "{{ ansible_env.HOME }}/emacs-src/emacs-24.5/"
+
+    - name: make
+        command: make
+        args:
+            chdir: "{{ ansible_env.HOME }}/emacs-src/emacs-24.5/"
+
+    - name: make install
+        command: make install
+        args:
+            chdir: "{{ ansible_env.HOME }}/emacs-src/emacs-24.5/"
+
+    - name: download .emacs.d
+        git:
+            repo: https://github.com/el-ethan/.emacs.d.git
+            dest: "{{ ansible_env.HOME }}/.emacs.d"
