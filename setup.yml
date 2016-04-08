@@ -8,6 +8,10 @@
       emacs_source_url: http://mirror.team-cymru.org/gnu/emacs/emacs-24.5.tar.gz
 
   tasks:
+
+    - name: generate ssh keys
+      user: name=ethan generate_ssh_key=yes ssh_key_bits=2048 ssh_key_file=.ssh/id_rsa
+
     - name: install apt packages
       apt: name={{ item }} state=present
       sudo: yes
@@ -21,6 +25,7 @@
           - xclip
           - silversearcher-ag
           - nautilus-dropbox
+          - indicator-multiload
           - python-pip
           - python-psutil
           - python-rope
@@ -108,6 +113,13 @@
 
     - name: enable uncomplicated firewall
       command: ufw enable
+      sudo: yes
+
+    - name: add enpass to sources
+      lineinfile:
+          dest: /etc/apt/sources.list.d/enpass.list
+          line: "deb http://repo.sinew.in/ stable main"
+          create: yes
       sudo: yes
 
     - name: add key for enpass
