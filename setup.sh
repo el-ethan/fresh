@@ -7,6 +7,6 @@ cd ~ && git clone https://github.com/el-ethan/fresh.git
 cd fresh
 
 # Run ansible playbook
-ansible-playbook setup.yml -i HOSTS --ask-sudo-pass
+ansible-playbook setup.yml -vvv -i HOSTS --ask-sudo-pass
 
 dropbox start -i > /dev/null 2>&1 &
