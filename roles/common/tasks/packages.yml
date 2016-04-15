@@ -20,6 +20,7 @@
       - python-autopep8
       - virtualenv
       - virtualenvwrapper
+      - texlive-latex-extra
 
 - name: install PyPi packages
   pip: name={{ item }} state=present
