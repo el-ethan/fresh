@@ -131,3 +131,7 @@
     - name: install enpass
       apt: name=enpass state=present update_cache=yes
       sudo: yes
+
+    - name: set cron job for scratch file cleanup at 9:30pm on Sundays
+      cron: name="clean scratch files" minute="30" hour="21" weekday="0"
+            job="{{ ansible_env.HOME }}/Dropbox/development/corgi/scratchy.py"
