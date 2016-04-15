@@ -1,0 +1,6 @@
+---
+- include: packages.yml
+- include: enpass.yml
+- include: emacs.yml
+  when: debug == false
+- include: configuration.yml

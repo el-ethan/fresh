@@ -1,0 +1,16 @@
+---
+- name: add enpass to sources
+  lineinfile:
+      dest: /etc/apt/sources.list.d/enpass.list
+      line: "deb http://repo.sinew.in/ stable main"
+      create: yes
+  sudo: yes
+
+- name: add key for enpass
+  apt_key:
+      url: http://repo.sinew.in/keys/enpass-linux.key
+  sudo: yes
+
+- name: install enpass
+  apt: name=enpass state=present update_cache=yes
+  sudo: yes

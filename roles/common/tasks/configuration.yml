@@ -1,0 +1,33 @@
+---
+- name: generate ssh keys
+  user: name=ethan generate_ssh_key=yes ssh_key_bits=2048 ssh_key_file=.ssh/id_rsa
+
+- name: download dot files
+  git:
+      repo: https://github.com/el-ethan/dotfiles.git
+      dest: "{{ ansible_env.HOME }}/dotfiles"
+
+- name: download terminator theme
+  git:
+      repo: https://github.com/el-ethan/terminator.git
+      dest: "{{ ansible_env.HOME }}/.config/terminator"
+
+- name: symlink config files
+  file: src=/home/ethan/dotfiles/{{ item.src }} dest={{ item.dest }} state=link force=yes
+  with_items:
+      - { src: '.bashrc', dest: '{{ ansible_env.HOME }}/.bashrc'}
+      - { src: '.pdbrc', dest: '{{ ansible_env.HOME }}/.pdbrc'}
+      - { src: '.pdbrc.py', dest: '{{ ansible_env.HOME }}/.pdbrc.py'}
+      - { src: 'flake8', dest: '{{ ansible_env.HOME }}/.config/flake8'}
+
+- name: set swapiness to 10
+  command: sysctl vm.swappiness=10
+  sudo: yes
+
+- name: enable uncomplicated firewall
+  command: ufw enable
+  sudo: yes
+
+- name: set cron job for scratch file cleanup at 9:30pm on Sundays
+  cron: name="clean scratch files" minute="30" hour="21" weekday="0"
+        job="{{ ansible_env.HOME }}/Dropbox/development/corgi/scratchy.py"

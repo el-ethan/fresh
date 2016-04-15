@@ -1,0 +1,28 @@
+---
+- name: install apt packages
+  apt: name={{ item }} state=present
+  sudo: yes
+  with_items:
+      - git
+      - terminator
+      - tree
+      - virtualbox-qt
+      - ipython
+      - editorconfig
+      - xclip
+      - silversearcher-ag
+      - nautilus-dropbox
+      - indicator-multiload
+      - python-pip
+      - python-psutil
+      - python-rope
+      - python-flake8
+      - python-autopep8
+      - virtualenv
+      - virtualenvwrapper
+
+- name: install PyPi packages
+  pip: name={{ item }} state=present
+  with_items:
+      - importmagic
+      - pdbpp
