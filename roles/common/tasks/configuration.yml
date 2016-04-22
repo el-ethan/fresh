@@ -31,3 +31,6 @@
 - name: set cron job for scratch file cleanup at 9:30pm on Sundays
   cron: name="clean scratch files" minute="30" hour="21" weekday="0"
         job="{{ ansible_env.HOME }}/Dropbox/development/corgi/scratchy.py"
+
+- name: move unity launcher to the bottom of the screen
+  command: gsettings set com.canonical.Unity.Launcher launcher-position 'Bottom'
