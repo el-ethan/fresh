@@ -21,6 +21,7 @@
       - virtualenv
       - virtualenvwrapper
       - texlive-latex-extra
+      - gnome-dictionary
 
 - name: install PyPi packages
   pip: name={{ item }} state=present
