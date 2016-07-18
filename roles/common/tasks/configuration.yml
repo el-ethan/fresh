@@ -34,3 +34,4 @@
 
 - name: move unity launcher to the bottom of the screen
   command: gsettings set com.canonical.Unity.Launcher launcher-position 'Bottom'
+  when: disto == unity
