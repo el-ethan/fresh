@@ -19,14 +19,14 @@
   apt:
       name: "build-essential"
       update_cache: yes
-  sudo: yes
+  become: true
 
 - name: install emacs dependencies
   apt:
       name: emacs24
       update_cache: yes
       state: build-dep
-  sudo: yes
+  become: true
 
 - name: configure emacs
   command: ./configure
@@ -42,7 +42,7 @@
   command: make install
   args:
       chdir: "{{ ansible_env.HOME }}/emacs-src/emacs-24.5/"
-  sudo: yes
+  become: true
 
 - name: download .emacs.d
   git:

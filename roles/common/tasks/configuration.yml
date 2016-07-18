@@ -18,15 +18,16 @@
       - { src: '.bashrc', dest: '{{ ansible_env.HOME }}/.bashrc'}
       - { src: '.pdbrc', dest: '{{ ansible_env.HOME }}/.pdbrc'}
       - { src: '.pdbrc.py', dest: '{{ ansible_env.HOME }}/.pdbrc.py'}
+      - { src: '.gitconfig', dest: '{{ ansible_env.HOME }}/.gitconfig'}
       - { src: 'flake8', dest: '{{ ansible_env.HOME }}/.config/flake8'}
 
 - name: set swapiness to 10
   command: sysctl vm.swappiness=10
-  sudo: yes
+  become: true
 
 - name: enable uncomplicated firewall
   command: ufw enable
-  sudo: yes
+  become: true
 
 - name: set cron job for scratch file cleanup at 9:30pm on Sundays
   cron: name="clean scratch files" minute="30" hour="21" weekday="0"
@@ -34,4 +35,4 @@
 
 - name: move unity launcher to the bottom of the screen
   command: gsettings set com.canonical.Unity.Launcher launcher-position 'Bottom'
-  when: disto == unity
+  when: disto == "unity"
