@@ -19,10 +19,13 @@
       - python-rope
       - python-flake8
       - python-autopep8
+      - python3-dev
       - virtualenv
       - virtualenvwrapper
       - texlive-latex-extra
       - gnome-dictionary
+      - mysql-server
+      - libmysqlclient-dev
 
 - name: install PyPi packages
   pip: name={{ item }} state=present
