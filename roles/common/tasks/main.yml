@@ -4,3 +4,4 @@
 - include: emacs.yml
   when: debug == false
 - include: configuration.yml
+- include: youtube_to_mp3.yml

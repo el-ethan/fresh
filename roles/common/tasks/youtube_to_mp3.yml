@@ -1,0 +1,10 @@
+---
+- name: Add MediaHuman repo
+  apt_repository: repo='deb http://www.mediahuman.com/packages/ubuntu trusty main'
+
+- name: Add key
+  apt_key: keyserver=pgp.mit.edu id=7D19F1F3
+
+- name: Install youtube-to-mp3
+  apt: name=youtube-to-mp3 update_cache=yes
+

@@ -8,6 +8,7 @@
       - terminator
       - tree
       - virtualbox-qt
+      - clipit
       - ipython
       - editorconfig
       - xclip
