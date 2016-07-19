@@ -27,6 +27,7 @@
       - gnome-dictionary
       - mysql-server
       - libmysqlclient-dev
+      - flake8
 
 - name: install PyPi packages
   pip: name={{ item }} state=present
