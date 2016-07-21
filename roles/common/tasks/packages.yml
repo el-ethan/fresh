@@ -5,6 +5,8 @@
   with_items:
       - git
       - gpick
+      - gimp
+      - handbrake
       - terminator
       - tree
       - virtualbox-qt
@@ -28,6 +30,7 @@
       - mysql-server
       - libmysqlclient-dev
       - flake8
+      - libdvd-pkg
 
 - name: install PyPi packages
   pip: name={{ item }} state=present
