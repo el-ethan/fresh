@@ -23,7 +23,7 @@
 
 - name: install emacs dependencies
   apt:
-      name: emacs24
+      name: emacs25
       update_cache: yes
       state: build-dep
   become: true
@@ -31,17 +31,17 @@
 - name: configure emacs
   command: ./configure
   args:
-      chdir: "{{ ansible_env.HOME }}/emacs-src/emacs-24.5/"
+      chdir: "{{ ansible_env.HOME }}/emacs-src/emacs-25.1/"
 
 - name: make emacs
   command: make
   args:
-      chdir: "{{ ansible_env.HOME }}/emacs-src/emacs-24.5/"
+      chdir: "{{ ansible_env.HOME }}/emacs-src/emacs-25.1/"
 
 - name: make install emacs
   command: make install
   args:
-      chdir: "{{ ansible_env.HOME }}/emacs-src/emacs-24.5/"
+      chdir: "{{ ansible_env.HOME }}/emacs-src/emacs-25.1/"
   become: true
 
 - name: download .emacs.d

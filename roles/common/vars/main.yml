@@ -1,4 +1,4 @@
 ---
 debug: true
-emacs_source_url: http://mirror.team-cymru.org/gnu/emacs/emacs-24.5.tar.gz
+emacs_source_url: http://mirror.team-cymru.org/gnu/emacs/emacs-25.1.tar.gz
 distro: "gnome"
