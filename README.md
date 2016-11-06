@@ -18,4 +18,4 @@
 
         ./setup.sh
 
-7. Sit back and watch your computer get provisioned, but don't go to far; one or two steps might require your input.
+7. Sit back and watch your computer get provisioned, but don't go too far; one or two steps might require your input.
