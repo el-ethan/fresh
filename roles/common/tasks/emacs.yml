@@ -23,7 +23,7 @@
 
 - name: install emacs dependencies
   apt:
-      name: emacs25
+      name: emacs24
       update_cache: yes
       state: build-dep
   become: true

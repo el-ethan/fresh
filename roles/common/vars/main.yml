@@ -1,4 +1,4 @@
 ---
-debug: true
+debug: false
 emacs_source_url: http://mirror.team-cymru.org/gnu/emacs/emacs-25.1.tar.gz
-distro: "gnome"
+distro: "unity"
