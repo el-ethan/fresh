@@ -12,6 +12,7 @@
       - virtualbox-qt
       - clipit
       - ipython
+      - ipython3
       - editorconfig
       - xclip
       - silversearcher-ag
