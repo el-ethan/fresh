@@ -19,7 +19,7 @@
       - { src: '.pdbrc', dest: '{{ ansible_env.HOME }}/.pdbrc'}
       - { src: '.pdbrc.py', dest: '{{ ansible_env.HOME }}/.pdbrc.py'}
       - { src: '.gitconfig', dest: '{{ ansible_env.HOME }}/.gitconfig'}
-      - { src: 'flake8', dest: '{{ ansible_env.HOME }}/.config/flake8'}
+      - { src: '.pylintrc', dest: '{{ ansible_env.HOME }}/.pylintrc'}
 
 - name: set swapiness to 10
   command: sysctl vm.swappiness=10
