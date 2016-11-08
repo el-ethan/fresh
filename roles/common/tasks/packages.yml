@@ -21,8 +21,8 @@
       - python-pip
       - python-psutil
       - python-rope
-      - python-flake8
       - python-autopep8
+      - pylint
       - python3-dev
       - virtualenv
       - virtualenvwrapper
